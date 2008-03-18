@@ -1,15 +1,14 @@
 /*
- *  DeltaEtavsPhi.cpp
+ *  DeltaPhi.cpp
  *  ValidationFramework
  *
- *  Created by Thomas Punz on 17.03.08.
+ *  Created by Thomas Punz on 18.03.08.
  *  Copyright 2008 __MyCompanyName__. All rights reserved.
  *
  */
 
-#include "DeltaEtavsPhi.h"
+#include "DeltaPhi.h"
 
-#include "vsBase.h"
 #include "myMath.h"
 
 #include <iostream>
@@ -42,7 +41,7 @@ using namespace std;
 const bool KS_TEST = false;
 const bool CHI2_TEST = true;
 
-DeltaEtavsPhi::DeltaEtavsPhi(PlotCompareUtility *pc)
+DeltaPhi::DeltaPhi(PlotCompareUtility *pc)
 {
 	this->pc=pc;
 	num_histos = pc->GetNumHistos();	
@@ -79,14 +78,14 @@ DeltaEtavsPhi::DeltaEtavsPhi(PlotCompareUtility *pc)
 	h2dResults=new TH1F("h2dResults","h2dResults", num_histos, 1, num_histos + 1);
 }
 
-DeltaEtavsPhi::~DeltaEtavsPhi()
+DeltaPhi::~DeltaPhi()
 {
 	
 }
 
 
 
-void DeltaEtavsPhi::histo_conf(int type)
+void DeltaPhi::histo_conf(int type)
 {
 	if(type==1)
 	{
@@ -104,7 +103,7 @@ void DeltaEtavsPhi::histo_conf(int type)
 		hg1dResults_failed->GetYaxis()->SetTitle("Compatibility");
 		
 		hrefSigmaETOverETvsETsigma->GetXaxis()->SetTitle("Phi");
-		hrefSigmaETOverETvsETsigma->GetYaxis()->SetTitle("#sigma(#DeltaEta)/Phi");
+		hrefSigmaETOverETvsETsigma->GetYaxis()->SetTitle("#sigmaPhi");
 		
 		
 		
@@ -164,7 +163,7 @@ void DeltaEtavsPhi::histo_conf(int type)
 
 
 
-void DeltaEtavsPhi::print_gifs(int type,int bin)
+void DeltaPhi::print_gifs(int type,int bin)
 {
 	
 	if(type==0)
@@ -175,7 +174,7 @@ void DeltaEtavsPhi::print_gifs(int type,int bin)
 		histo_name << ".gif";
 		histo_c1->Print(histo_name.str().c_str(),"gif");
 		
-		string et_sigma_name = name + "SigmaDeltaEta_vs_Phi.gif";
+		string et_sigma_name = name + "SigmaDeltaPhiOverPhi_vs_Phi.gif";
 		
 		sigma_et->Print(et_sigma_name.c_str(),"gif");
 		
@@ -218,7 +217,7 @@ void DeltaEtavsPhi::print_gifs(int type,int bin)
 		
 		// print the result to gif
 		stringstream histo_name;
-		histo_name <<"DeltaEtavsPhi/"<< name << "Compare_etBin";
+		histo_name <<"DeltaPhi/"<< name << "Compare_etBin";
 		if (bin < 10) histo_name << "000";
 		else if (bin < 100) histo_name << "00";
 		else if (bin < 1000) histo_name << "0";

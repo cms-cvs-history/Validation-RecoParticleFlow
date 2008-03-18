@@ -46,6 +46,11 @@ class DeltaEtaOverEtavsEta;
 class DeltaEtavsPhi;
 class DeltaPhiOverPhivsPhi;
 
+class DeltaEt;
+class DeltaPhi;
+class DeltaEta;
+class DeltaR;
+
 
 class validator{
 	
@@ -86,7 +91,10 @@ public:
 	DeltaEtavsPhi *deltaEtavsPhi;
 	DeltaPhiOverPhivsPhi *deltaPhiOverPhivsPhi;
 	
-	
+	DeltaEt *deltaEt;
+	DeltaPhi *deltaPhi;
+	DeltaEta *deltaEta;
+	DeltaR *deltaR;
 	
 	
 	bool combinedFailed;

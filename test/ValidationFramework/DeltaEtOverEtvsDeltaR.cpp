@@ -127,7 +127,7 @@ void DeltaEtOverEtvsDeltaR::histo_conf(int type)
 		// set drawing options on the dummy histogram
 		hdumb->SetStats(0);
 		//hdumb->GetXaxis()->SetTitle(name.c_str());
-		hdumb->GetXaxis()->SetTitle("Eta");
+		hdumb->GetXaxis()->SetTitle("DeltaR");
 		
 		hdumb->GetXaxis()->SetLabelSize(0.5 * hdumb->GetXaxis()->GetTitleSize());
 		hdumb->GetYaxis()->SetTitle("Entries");

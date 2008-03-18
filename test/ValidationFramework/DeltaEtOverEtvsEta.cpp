@@ -171,11 +171,11 @@ void DeltaEtOverEtvsEta::print_gifs(int type,int bin)
 	{
 		// print the result to gif
 		stringstream histo_name;
-		histo_name << name + "dEt_Allbins";
+		histo_name << name + "dEta_Allbins";
 		histo_name << ".gif";
 		histo_c1->Print(histo_name.str().c_str(),"gif");
 		
-		string et_sigma_name = name + "SigmaDeltaOverEt_vs_Eta.gif";
+		string et_sigma_name = name + "SigmaDeltaEtOverEt_vs_Eta.gif";
 		
 		sigma_et->Print(et_sigma_name.c_str(),"gif");
 		

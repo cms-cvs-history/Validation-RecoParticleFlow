@@ -59,6 +59,10 @@
 #include "DeltaEtavsPhi.h"
 #include "DeltaPhiOverPhivsPhi.h"
 
+#include "DeltaEt.h"
+#include "DeltaPhi.h"
+#include "DeltaEta.h"
+#include "DeltaR.h"
 
 using namespace std;
 
@@ -103,6 +107,10 @@ validator::validator(string new_file, string ref_file)
 	hd = pc->AddHistoData("DeltaEtavsPhi"); hd->SetType(2); hd->SetValueX("Phi (deg)");                 //20
 	hd = pc->AddHistoData("DeltaPhiOverPhivsPhi"); hd->SetType(2); hd->SetValueX("Phi (deg)");           //21
 	
+	hd = pc->AddHistoData("DeltaEt"); hd->SetType(2); hd->SetValueX("Et (GeV)");                       //22 
+	hd = pc->AddHistoData("DeltaPhi"); hd->SetType(2); hd->SetValueX("Phi (deg)");                       //23 
+	hd = pc->AddHistoData("DeltaEta"); hd->SetType(2); hd->SetValueX("Eta ");                       //24 
+	hd = pc->AddHistoData("DeltaR"); hd->SetType(2); hd->SetValueX("Delta R");                       //25
 	
 	if (pc->GetStatus() != 0) 
 	{
@@ -133,6 +141,10 @@ validator::validator(string new_file, string ref_file)
 	deltaEtavsPhi=new DeltaEtavsPhi(pc);
 	deltaPhiOverPhivsPhi=new DeltaPhiOverPhivsPhi(pc);
 	
+	deltaEt=new DeltaEt(pc);
+	deltaPhi=new DeltaPhi(pc);
+	deltaEta=new DeltaEta(pc);
+	deltaR=new DeltaR(pc);
 	
 	histo_Loop();
 }
@@ -147,7 +159,7 @@ validator::~validator()
 void validator::histo_Loop()
 {
 //	for (int index = 0; index < pc->GetNumHistos(); index++)
-	for (int index = 0; index < 22; index++)
+	for (int index = 0; index < 26; index++)
 	{
 		if(index==0)
 		{
@@ -632,6 +644,94 @@ void validator::histo_Loop()
 			deltaPhiOverPhivsPhi->print_gifs(0,0);
 		}
 		
+		
+		else if(index==22)
+		{
+			deltaEt->fetch_histos(index);
+			running_result = 0;
+			counted_bins = 0;
+			//	for (int bin = 1; bin <= num_et_bins; bin++)
+			//		{
+			for (int bin = 1; bin <= 100; bin++)
+			{
+				cout<<"Bin: "<<bin<<endl;
+				deltaEt->loop_over_et_bins(index,bin);
+			}
+			
+			deltaEt->draw_score_vs_ET(index);
+			deltaEt->report(index);
+			deltaEt->draw_test_plot_and_delta_et();
+			deltaEt->draw_test_plot_sigma_ET_vs_ET();
+			deltaEt->draw_summary();
+			deltaEt->report(index);
+			deltaEt->print_gifs(0,0);
+		}
+		
+		else if(index==23)
+		{
+			deltaPhi->fetch_histos(index);
+			running_result = 0;
+			counted_bins = 0;
+			//	for (int bin = 1; bin <= num_et_bins; bin++)
+			//		{
+			for (int bin = 1; bin <= 100; bin++)
+			{
+				cout<<"Bin: "<<bin<<endl;
+				deltaPhi->loop_over_et_bins(index,bin);
+			}
+			
+			deltaPhi->draw_score_vs_ET(index);
+			deltaPhi->report(index);
+			deltaPhi->draw_test_plot_and_delta_et();
+			deltaPhi->draw_test_plot_sigma_ET_vs_ET();
+			deltaPhi->draw_summary();
+			deltaPhi->report(index);
+			deltaPhi->print_gifs(0,0);
+		}
+		
+		else if(index==24)
+		{
+			deltaEta->fetch_histos(index);
+			running_result = 0;
+			counted_bins = 0;
+			//	for (int bin = 1; bin <= num_et_bins; bin++)
+			//		{
+			for (int bin = 1; bin <= 100; bin++)
+			{
+				cout<<"Bin: "<<bin<<endl;
+				deltaEta->loop_over_et_bins(index,bin);
+			}
+			
+			deltaEta->draw_score_vs_ET(index);
+			deltaEta->report(index);
+			deltaEta->draw_test_plot_and_delta_et();
+			deltaEta->draw_test_plot_sigma_ET_vs_ET();
+			deltaEta->draw_summary();
+			deltaEta->report(index);
+			deltaEta->print_gifs(0,0);
+		}
+		
+		else if(index==25)
+		{
+			deltaR->fetch_histos(index);
+			running_result = 0;
+			counted_bins = 0;
+			//	for (int bin = 1; bin <= num_et_bins; bin++)
+			//		{
+			for (int bin = 1; bin <= 100; bin++)
+			{
+				cout<<"Bin: "<<bin<<endl;
+				deltaR->loop_over_et_bins(index,bin);
+			}
+			
+			deltaR->draw_score_vs_ET(index);
+			deltaR->report(index);
+			deltaR->draw_test_plot_and_delta_et();
+			deltaR->draw_test_plot_sigma_ET_vs_ET();
+			deltaR->draw_summary();
+			deltaR->report(index);
+			deltaR->print_gifs(0,0);
+		}
 	}
 }
 

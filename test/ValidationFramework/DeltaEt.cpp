@@ -1,13 +1,13 @@
 /*
- *  DeltaEtavsPhi.cpp
+ *  DeltaEt.cpp
  *  ValidationFramework
  *
- *  Created by Thomas Punz on 17.03.08.
+ *  Created by Thomas Punz on 18.03.08.
  *  Copyright 2008 __MyCompanyName__. All rights reserved.
  *
  */
 
-#include "DeltaEtavsPhi.h"
+#include "DeltaEt.h"
 
 #include "vsBase.h"
 #include "myMath.h"
@@ -42,7 +42,7 @@ using namespace std;
 const bool KS_TEST = false;
 const bool CHI2_TEST = true;
 
-DeltaEtavsPhi::DeltaEtavsPhi(PlotCompareUtility *pc)
+DeltaEt::DeltaEt(PlotCompareUtility *pc)
 {
 	this->pc=pc;
 	num_histos = pc->GetNumHistos();	
@@ -79,32 +79,32 @@ DeltaEtavsPhi::DeltaEtavsPhi(PlotCompareUtility *pc)
 	h2dResults=new TH1F("h2dResults","h2dResults", num_histos, 1, num_histos + 1);
 }
 
-DeltaEtavsPhi::~DeltaEtavsPhi()
+DeltaEt::~DeltaEt()
 {
 	
 }
 
 
 
-void DeltaEtavsPhi::histo_conf(int type)
+void DeltaEt::histo_conf(int type)
 {
 	if(type==1)
 	{
-		href->GetXaxis()->SetTitle("Phi");
+		href->GetXaxis()->SetTitle("Et");
 		href->GetYaxis()->SetTitle("Events");
 		href->GetYaxis()->SetTitleOffset(1.5);
 		
-		hnew->GetXaxis()->SetTitle("Phi");      
+		hnew->GetXaxis()->SetTitle("Et");      
 		//	href->GetYaxis()->SetTitle("Events");
 		
-		h1dResults_passed->GetXaxis()->SetTitle("Phi");
+		h1dResults_passed->GetXaxis()->SetTitle("Et");
 		h1dResults_passed->GetYaxis()->SetTitle("Compatibility");
 		
 		hg1dResults_passed->GetYaxis()->SetTitle("Compatibility");
 		hg1dResults_failed->GetYaxis()->SetTitle("Compatibility");
 		
-		hrefSigmaETOverETvsETsigma->GetXaxis()->SetTitle("Phi");
-		hrefSigmaETOverETvsETsigma->GetYaxis()->SetTitle("#sigma(#DeltaEta)/Phi");
+		hrefSigmaETOverETvsETsigma->GetXaxis()->SetTitle("Et");
+		hrefSigmaETOverETvsETsigma->GetYaxis()->SetTitle("#sigma(Et");
 		
 		
 		
@@ -127,7 +127,7 @@ void DeltaEtavsPhi::histo_conf(int type)
 		// set drawing options on the dummy histogram
 		hdumb->SetStats(0);
 		//hdumb->GetXaxis()->SetTitle(name.c_str());
-		hdumb->GetXaxis()->SetTitle("Phi");
+		hdumb->GetXaxis()->SetTitle("Et");
 		
 		hdumb->GetXaxis()->SetLabelSize(0.5 * hdumb->GetXaxis()->GetTitleSize());
 		hdumb->GetYaxis()->SetTitle("Entries");
@@ -164,18 +164,18 @@ void DeltaEtavsPhi::histo_conf(int type)
 
 
 
-void DeltaEtavsPhi::print_gifs(int type,int bin)
+void DeltaEt::print_gifs(int type,int bin)
 {
 	
 	if(type==0)
 	{
 		// print the result to gif
 		stringstream histo_name;
-		histo_name << name + "dPhi_Allbins";
+		histo_name << name + "dEt_Allbins";
 		histo_name << ".gif";
 		histo_c1->Print(histo_name.str().c_str(),"gif");
 		
-		string et_sigma_name = name + "SigmaDeltaEta_vs_Phi.gif";
+		string et_sigma_name = name + "SigmaDeltaEt.gif";
 		
 		sigma_et->Print(et_sigma_name.c_str(),"gif");
 		
@@ -218,7 +218,7 @@ void DeltaEtavsPhi::print_gifs(int type,int bin)
 		
 		// print the result to gif
 		stringstream histo_name;
-		histo_name <<"DeltaEtavsPhi/"<< name << "Compare_etBin";
+		histo_name <<"DeltaEt/"<< name << "Compare_etBin";
 		if (bin < 10) histo_name << "000";
 		else if (bin < 100) histo_name << "00";
 		else if (bin < 1000) histo_name << "0";

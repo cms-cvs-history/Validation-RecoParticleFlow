@@ -128,7 +128,7 @@ void DeltaPHIvsPHI::histo_conf(int type)
 		// set drawing options on the dummy histogram
 		hdumb->SetStats(0);
 		//hdumb->GetXaxis()->SetTitle(name.c_str());
-		hdumb->GetXaxis()->SetTitle("Eta");
+		hdumb->GetXaxis()->SetTitle("Phi");
 		
 		hdumb->GetXaxis()->SetLabelSize(0.5 * hdumb->GetXaxis()->GetTitleSize());
 		hdumb->GetYaxis()->SetTitle("Entries");
@@ -176,7 +176,7 @@ void DeltaPHIvsPHI::print_gifs(int type,int bin)
 		histo_name << ".gif";
 		histo_c1->Print(histo_name.str().c_str(),"gif");
 		
-		string et_sigma_name = name + "SigmaPhi_vs_Phi.gif";
+		string et_sigma_name = name + "SigmaDeltaPhi_vs_Phi.gif";
 		
 		sigma_et->Print(et_sigma_name.c_str(),"gif");
 		
