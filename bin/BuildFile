@@ -1,4 +1,166 @@
 <use name=root>
 <use name=rootcore>
+<library name=TDRStyle file=TDRStyle.cpp>
+</library>
+<library name=HistoData file=HistoData.cpp>
+</library>
+<library name=myMath file=myMath.cpp>
+</library>
+<library name=StatusMonitor file=StatusMonitor.cpp>
+</library>
+<library name=PlotCompareUtility file=PlotCompareUtility.cpp>
+	<lib name=TDRStyle>
+	<lib name=HistoData>
+</library>
+<library name=SimpleDistributionBase file=simpleDistributionBase.cpp>
+	<lib name=PlotCompareUtility>
+	<lib name=myMath>
+</library>
+<library name=vsBase file=vsBase.cpp>
+	<lib name=PlotCompareUtility>
+	<lib name=myMath>
+</library>
+
+<library name=DeltaEta file=DeltaEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtaOverEtavsEta file=DeltaEtaOverEtavsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtaOverEtavsEt file=DeltaEtaOverEtavsEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtaOverEtavsPhi file=DeltaEtaOverEtavsPhi.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtavsEta file=DeltaEtavsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtavsEt file=DeltaEtavsEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEt file=DeltaEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtOverEtvsDeltaR file=DeltaEtOverEtvsDeltaR.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtOverEtvsEta file=DeltaEtOverEtvsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtOverEtvsEt file=DeltaEtOverEtvsEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtOverEtvsPhi file=DeltaETOverEtvsPhi.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtvsDeltaR file=DeltaEtvsDeltaR.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtvsEta file=DeltaEtvsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtvsEt file=DeltaETvsET.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaEtvsPhi file=DeltaEtvsPhi.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhi file=DeltaPhi.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhiOverPhivsEta file=DeltaPhiOverPhivsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhiOverPhivsEt file=DeltaPhiOverPhivsEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhiOverPhivsPhi file=DeltaPhiOverPhivsPhi.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhivsEta file=DeltaPhivsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhivsEt file=DeltaPhivsEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaPhivsPhi file=DeltaPHIvsPHI.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaR file=DeltaR.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaRvsEta file=DeltaRvsEta.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaRvsEt file=DeltaRvsEt.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+<library name=DeltaRvsPhi file=DeltaRvsPhi.cpp>
+	<lib name=SimpleDistributionBase>
+	<lib name=vsBase>
+</library>
+
+<library name=Validator file=Validator.cpp>
+	<lib name=StatusMonitor>
+	<lib name=DeltaEta>
+	<lib name=DeltaEtaOverEtavsEta>
+	<lib name=DeltaEtaOverEtavsEt>
+	<lib name=DeltaEtaOverEtavsPhi>
+	<lib name=DeltaEtavsEta>
+	<lib name=DeltaEtavsEt>
+	<lib name=DeltaEtavsPhi>
+	<lib name=DeltaEt>
+	<lib name=DeltaEtOverEtvsDeltaR>
+	<lib name=DeltaEtOverEtvsEta>
+	<lib name=DeltaEtOverEtvsEt>
+	<lib name=DeltaEtOverEtvsPhi>
+	<lib name=DeltaEtvsDeltaR>
+	<lib name=DeltaEtvsEta>
+	<lib name=DeltaEtvsEt>
+	<lib name=DeltaEtvsPhi>
+	<lib name=DeltaPhi>
+	<lib name=DeltaPhiOverPhivsEta>
+	<lib name=DeltaPhiOverPhivsEt>
+	<lib name=DeltaPhiOverPhivsPhi>
+	<lib name=DeltaPhivsEta>
+	<lib name=DeltaPhivsEt>
+	<lib name=DeltaPhivsPhi>
+	<lib name=DeltaR>
+	<lib name=DeltaRvsEta>
+	<lib name=DeltaRvsEt>
+	<lib name=DeltaRvsPhi>
+</library>
+
+
+
 
 <bin name=compareHists file=compareHists.cc></bin>
+<bin name=validation file=main.cpp>
+	<lib name=Validator>
+</bin>
