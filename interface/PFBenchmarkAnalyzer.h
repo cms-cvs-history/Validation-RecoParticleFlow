@@ -30,7 +30,9 @@ public:
   std::string inputRecoLabel_;
   std::string benchmarkLabel_;
   bool plotAgainstRecoQuantities_;
-
+  double recPt_cut;
+  double maxEta_cut;
+  double deltaR_cut;
 };
 
 #endif // PFBENCHMARKANALYZER_H
