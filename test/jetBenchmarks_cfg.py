@@ -25,16 +25,16 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 
-process.load("Validation.RecoParticleFlow.pfJetBenchmark_cfi")
-process.load("Validation.RecoParticleFlow.caloJetBenchmark_cfi")
+process.load("Validation.RecoParticleFlow.pfJetBenchmarkGeneric_cfi")
+process.load("Validation.RecoParticleFlow.caloJetBenchmarkGeneric_cfi")
 
 
 process.p =cms.Path(
 #    process.genParticles*
 #    process.genJetParticles*
 #    process.recoGenJets*
-    process.pfJetBenchmark*
-    process.caloJetBenchmark
+    process.pfJetBenchmarkGeneric*
+    process.caloJetBenchmarkGeneric
     )
 
 
