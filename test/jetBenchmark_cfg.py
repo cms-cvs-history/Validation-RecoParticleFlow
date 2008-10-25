@@ -7,13 +7,6 @@ process = cms.Process("TEST")
 process.load("DQMServices.Core.DQM_cfg")
 
 
-process.load("RecoJets.Configuration.GenJetParticles_cff")
-process.load("RecoJets.Configuration.RecoGenJets_cff")
-process.load("RecoJets.Configuration.RecoPFJets_cff")
-process.load("PhysicsTools.HepMCCandAlgos.genParticles_cfi")
-process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
-
-
 process.source = cms.Source("PoolSource",
 fileNames = cms.untracked.vstring(
 'file:aod.root'
@@ -25,14 +18,24 @@ process.maxEvents = cms.untracked.PSet(
 )
 
 
+
+process.load("RecoJets.Configuration.GenJetParticles_cff")
+process.load("RecoJets.Configuration.RecoGenJets_cff")
+process.load("RecoJets.Configuration.RecoPFJets_cff")
+process.load("PhysicsTools.HepMCCandAlgos.genParticles_cfi")
+process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
+process.genParticlesForJets.ignoreParticleIDs.append(14)
+process.genParticlesForJets.ignoreParticleIDs.append(12)
+process.genParticlesForJets.ignoreParticleIDs.append(16)
+process.genParticlesForJets.excludeResonances = False
+
 process.load("Validation.RecoParticleFlow.pfJetBenchmarkGeneric_cfi")
 process.load("Validation.RecoParticleFlow.caloJetBenchmarkGeneric_cfi")
 
 
 process.p =cms.Path(
-#    process.genParticles*
-#    process.genJetParticles*
-#    process.recoGenJets*
+    process.genJetParticles*
+    process.recoGenJets*
     process.pfJetBenchmarkGeneric*
     process.caloJetBenchmarkGeneric
     )
@@ -67,8 +70,3 @@ process.options = cms.untracked.PSet(
 )
 
 process.MessageLogger.cerr.FwkReport.reportEvery = 50
-process.genParticlesForJets.ignoreParticleIDs.append(14)
-process.genParticlesForJets.ignoreParticleIDs.append(12)
-process.genParticlesForJets.ignoreParticleIDs.append(16)
-process.genParticlesForJets.excludeResonances = False
-
