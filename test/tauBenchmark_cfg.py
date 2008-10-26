@@ -7,17 +7,6 @@ process = cms.Process("TEST")
 process.load("DQMServices.Core.DQM_cfg")
 
 
-process.load("RecoJets.Configuration.GenJetParticles_cff")
-process.load("RecoJets.Configuration.RecoGenJets_cff")
-#process.load("RecoJets.Configuration.RecoPFJets_cff")
-process.load("PhysicsTools.HepMCCandAlgos.genParticles_cfi")
-process.load("SimGeneral.HepPDTESSource.pythiapdt_cfi")
-
-process.genParticlesForJets.ignoreParticleIDs.append(14)
-process.genParticlesForJets.ignoreParticleIDs.append(12)
-process.genParticlesForJets.ignoreParticleIDs.append(16)
-process.genParticlesForJets.excludeResonances = False
-
 process.source = cms.Source("PoolSource",
 fileNames = cms.untracked.vstring(
 'file:aod.root'
@@ -63,6 +52,8 @@ process.options = cms.untracked.PSet(
         'FatalRootError', 
         'NotFound')
 )
+
+
 
 process.MessageLogger.cerr.FwkReport.reportEvery = 50
 
