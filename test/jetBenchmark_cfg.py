@@ -9,7 +9,7 @@ process.load("DQMServices.Core.DQM_cfg")
 
 process.source = cms.Source("PoolSource",
 fileNames = cms.untracked.vstring(
-'file:reco_DiJetFull.root'
+'file:aod.root'
 )
 )
 process.maxEvents = cms.untracked.PSet(
