@@ -1,6 +1,6 @@
 {
 
-gROOT->LoadMacro("Macros/NicePlot.C");
+gROOT->LoadMacro("../Tools/NicePlot.C");
 InitNicePlot();
 
 TFile f("tauBenchmarkGeneric.root");
