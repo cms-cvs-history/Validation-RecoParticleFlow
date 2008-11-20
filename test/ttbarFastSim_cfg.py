@@ -3,22 +3,27 @@ import FWCore.ParameterSet.Config as cms
 
 process = cms.Process("PROD")
 
-
 process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(2500)
 )
 
-#generation
-from Configuration.Generator.PythiaUESettings_cfi import *
+# ttbar events
+from Configuration.GenProduction.PythiaUESettings_cfi import *
 process.source = cms.Source("PythiaSource",
     pythiaHepMCVerbosity = cms.untracked.bool(False),
     maxEventsToPrint = cms.untracked.int32(0),
-    pythiaPylistVerbosity = cms.untracked.int32(0),
+    pythiaPylistVerbosity = cms.untracked.int32(1),
+    filterEfficiency = cms.untracked.double(1.0),
+    comEnergy = cms.untracked.double(14000.0),
+    crossSection = cms.untracked.double(78000000000.),
     PythiaParameters = cms.PSet(
         pythiaUESettingsBlock,
-        processParameters = cms.vstring('MSEL=1               ! QCD hight pT processes', 
-            'CKIN(3)===BINLOW==.          ! minimum pt hat for hard interactions', 
-            'CKIN(4)===BINHIGH==.          ! maximum pt hat for hard interactions'),
+        processParameters = cms.vstring('MSEL=0         ! User defined processes',
+            'MSUB(81)  = 1     ! qqbar to QQbar',
+            'MSUB(82)  = 1     ! gg to QQbar',
+            'MSTP(7)   = 6     ! flavor = top',
+            'PMAS(6,1) = 172.4  ! top quark mass'),
+        # This is a vector of ParameterSet names to be read, in this order
         parameterSets = cms.vstring('pythiaUESettings', 
             'processParameters')
     )
@@ -27,6 +32,8 @@ process.source = cms.Source("PythiaSource",
 
 #fastsim
 process.load("FastSimulation.Configuration.RandomServiceInitialization_cff")
+process.RandomNumberGeneratorService.theSource.initialSeed= ==SEED==
+
 process.load("FastSimulation.Configuration.CommonInputs_cff")
 process.load("FastSimulation.Configuration.FamosSequences_cff")
 
@@ -77,6 +84,6 @@ process.display = cms.OutputModule("PoolOutputModule",
     fileName = cms.untracked.string('display.root')
 )
 
-process.outpath = cms.EndPath(process.aod + process.reco + process.display)
+process.outpath = cms.EndPath(process.aod)
 
 #

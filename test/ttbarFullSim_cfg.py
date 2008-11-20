@@ -6,20 +6,28 @@ process.maxEvents = cms.untracked.PSet(
     input = cms.untracked.int32(250)
 )
 
-from Configuration.Generator.PythiaUESettings_cfi import *
+# ttbar events
+from Configuration.GenProduction.PythiaUESettings_cfi import *
 process.source = cms.Source("PythiaSource",
     pythiaHepMCVerbosity = cms.untracked.bool(False),
     maxEventsToPrint = cms.untracked.int32(0),
-    pythiaPylistVerbosity = cms.untracked.int32(0),
+    pythiaPylistVerbosity = cms.untracked.int32(1),
+    filterEfficiency = cms.untracked.double(1.0),
+    comEnergy = cms.untracked.double(14000.0),
+    crossSection = cms.untracked.double(78000000000.),
     PythiaParameters = cms.PSet(
         pythiaUESettingsBlock,
-        processParameters = cms.vstring('MSEL=1               ! QCD hight pT processes', 
-            'CKIN(3)===BINLOW==.          ! minimum pt hat for hard interactions', 
-            'CKIN(4)===BINHIGH==.          ! maximum pt hat for hard interactions'),
+        processParameters = cms.vstring('MSEL=0         ! User defined processes',
+            'MSUB(81)  = 1     ! qqbar to QQbar',
+            'MSUB(82)  = 1     ! gg to QQbar',
+            'MSTP(7)   = 6     ! flavor = top',
+            'PMAS(6,1) = 172.4  ! top quark mass'),
+        # This is a vector of ParameterSet names to be read, in this order
         parameterSets = cms.vstring('pythiaUESettings', 
             'processParameters')
     )
 )
+
 
 # this example configuration offers some minimum 
 # annotation, to help users get through; please
@@ -114,12 +122,6 @@ process.display = cms.OutputModule("PoolOutputModule",
 
 process.load("RecoParticleFlow.PFBlockProducer.particleFlowSimParticle_cff")
 
-#process.electronChi2.MaxChi2 = 100000
-#process.electronChi2.nSigma = 3
-#process.pfTrackElec.ModeMomentum = True
-#process.pfTrackElec.AddGSFTkColl = False
-#process.particleFlowBlock.pf_chi2_ECAL_Track = 900
-
 process.p0 = cms.Path(process.pgen)
 process.p1 = cms.Path(process.psim)
 process.p2 = cms.Path(process.pdigi)
@@ -127,7 +129,7 @@ process.p3 = cms.Path(process.L1Emulator)
 process.p4 = cms.Path(process.DigiToRaw)
 process.p5= cms.Path(process.RawToDigi)
 process.p6= cms.Path(process.reconstruction+process.particleFlowSimParticle)
-process.outpath = cms.EndPath(process.aod+process.reco+process.display)
+process.outpath = cms.EndPath(process.aod)
 process.schedule = cms.Schedule(process.p0,process.p1,process.p2,process.p3,process.p4,process.p5,process.p6,process.outpath)
 
 
