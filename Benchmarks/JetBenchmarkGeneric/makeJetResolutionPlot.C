@@ -66,7 +66,7 @@ void PlotGraphs( TGraph* gra, TGraph* grb,
 
 }
 
-void Resolution(unsigned barrel, const char* input, const char* output, const char* title="", unsigned algo=0) {
+void Resolution(bool barrel, const char* input, const char* output) {
   
   gROOT->Reset();
   TFile *f = new TFile(input);
@@ -76,7 +76,7 @@ void Resolution(unsigned barrel, const char* input, const char* output, const ch
 
   vector<float> pts;
 
-  if ( barrel == 1) { 
+  if ( barrel ) { 
     hists.push_back( "BRPt20_40") ;
     hists.push_back( "BRPt40_60");
     hists.push_back( "BRPt60_80");
@@ -88,7 +88,7 @@ void Resolution(unsigned barrel, const char* input, const char* output, const ch
     hists.push_back( "BRPt300_400");
     hists.push_back( "BRPt400_500");
     hists.push_back( "BRPt500_750");
-  } else if ( barrel == 2 ) {
+  } else {
     hists.push_back( "ERPt20_40") ;
     hists.push_back( "ERPt40_60");
     hists.push_back( "ERPt60_80");
@@ -100,18 +100,6 @@ void Resolution(unsigned barrel, const char* input, const char* output, const ch
     hists.push_back( "ERPt300_400");
     hists.push_back( "ERPt400_500");
     hists.push_back( "ERPt500_750");
-  } else if ( barrel == 3 ) {
-    hists.push_back( "FRPt20_40") ;
-    hists.push_back( "FRPt40_60");
-    hists.push_back( "FRPt60_80");
-    hists.push_back( "FRPt80_100");
-    hists.push_back( "FRPt100_150");
-    hists.push_back( "FRPt150_200");
-    hists.push_back( "FRPt200_250");
-    hists.push_back( "FRPt250_300");
-    hists.push_back( "FRPt300_400");
-    hists.push_back( "FRPt400_500");
-    hists.push_back( "FRPt500_750");
   }
   pts.push_back(30);
   pts.push_back(50);
@@ -131,16 +119,12 @@ void Resolution(unsigned barrel, const char* input, const char* output, const ch
   vector<float> arithmavs;
 
   int n=0;
-  if ( algo == 0 ) 
-    f->cd("DQMData/PFTask/Benchmarks/iterativeCone5PFJets/Gen");
-  else if ( algo == 1 ) 
-    f->cd("DQMData/PFTask/Benchmarks/kt4PFJets/Gen");
-    
+  f->cd("DQMData/PFTask/Benchmarks/iterativeCone5PFJets/Gen");
   for( unsigned i=0; i<hists.size(); ++i) {
 
     TH1* h = (TH1*) gDirectory->Get( hists[i].c_str() );
     if( !h ) {
-      cerr<<hists[i].c_str()<<" does not exist"<<endl;
+      cerr<<h->GetName()<<" does not exist"<<endl;
       continue;
     }
 
@@ -166,14 +150,14 @@ void Resolution(unsigned barrel, const char* input, const char* output, const ch
   
   c->cd(1);
   PlotGraphs( gr1, gr12, "width",
-	      title, 
+	      "", 
 	      "p_{T} (GeV/c)", 
 	      "Width #Delta p_{T} / p_{T}",
-	      0, 700, 0.02, 0.16);
+	      0, 700, 0.04, 0.16);
 
   c->cd(2);
   PlotGraphs( gr2, gr22, "mean",
-	      "and response", 
+	      "", 
 	      "p_{T} (GeV/c)", 
 	      "Mean #Delta p_{T} / p_{T}",
 	      0, 700, -0.25, 0.01);
