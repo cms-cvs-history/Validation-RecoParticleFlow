@@ -1,10 +1,13 @@
 import FWCore.ParameterSet.Config as cms
 
-from Validation.RecoParticleFlow.pfMETBenchmarkGeneric_cfi import pfMETBenchmarkGeneric
-from Validation.RecoParticleFlow.caloMETBenchmarkGeneric_cfi import caloMETBenchmarkGeneric
+from Validation.RecoParticleFlow.pfMetBenchmarkGeneric_cfi import pfMetBenchmarkGeneric
+from Validation.RecoParticleFlow.caloMetBenchmarkGeneric_cfi import caloMetBenchmarkGeneric
+
+# add here specific things needed for the MET benchmark if needed
+# for example, the computation of the GenMET. 
 
 metBenchmarkGeneric = cms.Sequence( 
-    pfMETBenchmarkGeneric
+    pfMetBenchmarkGeneric
     +
-    caloMETBenchmarkGeneric
+    caloMetBenchmarkGeneric
     )

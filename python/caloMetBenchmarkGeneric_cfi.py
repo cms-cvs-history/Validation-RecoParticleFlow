@@ -2,8 +2,8 @@ import FWCore.ParameterSet.Config as cms
 
 met = 'met'
 
-caloMETBenchmarkGeneric = cms.EDAnalyzer("GenericBenchmarkAnalyzer",
-    OutputFile = cms.untracked.string('benchmark.root'),
+caloMetBenchmarkGeneric = cms.EDAnalyzer("GenericBenchmarkAnalyzer",
+    OutputFile = cms.untracked.string('metBenchmarkGeneric.root'),
     InputTruthLabel = cms.InputTag('genMetTrue'),
     minEta = cms.double(-5.0),
     maxEta = cms.double(5.0),
